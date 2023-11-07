@@ -1,0 +1,42 @@
+﻿@model List<UserListModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<table class="mt-4 table table-hover table-bordered table-sm ">
+
+
+    <thead>
+        <tr>
+            <th>NAME</th>
+            <th>SURNAME</th>
+            <th>Account Count</th>
+            <th>Create Account</th>
+            <th>User Accounts</th>
+
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Surname</td>
+                <td>
+
+                    <getAccountCount application-user-id="@item.Id"></getAccountCount>
+                </td>
+                <td>
+                    <a asp-action="Create" asp-controller="Account" asp-route-id="@item.Id">Create New Account </a>
+                </td>
+                <td>
+                    <a asp-action="GetByUserId" asp-controller="Account" asp-route-userId="@item.Id"> Hesap Detayları</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+
+</table>
